@@ -1,0 +1,32 @@
+server.port=9002
+server.minthread=10
+server.maxthread=400
+server.timeout=10000
+
+
+dsp.pool=10
+dsp.user=esb
+dsp.pwd=esbtest1
+dsp.host=10.251.38.185
+dsp.port=8001
+
+# keep default
+dsp.retry=5
+dsp.retry.sleep=1000
+dsp.enquiry.interval=10000
+dsp.rto=10000
+
+
+jndi.erin=jdbc:mysql://localhost:3306/sites|apps|aplikasi|com.mysql.cj.jdbc.Driver;5;5;3;120000
+jndi.hvc=jdbc:oracle:thin:@10.2.117.37:1521:ODRMASSIVE|system|Tsel2017#321|oracle.jdbc.OracleDriver;5;5;3;120000
+sqlid.1=SELECT * from erin_hvc_a where msisdn='[msisdn]'
+
+#jndi.erin=jdbc:mysql://localhost:3306/erin|root|null;5;5;3;120000
+#log4j.rootLogger=DEBUG,APIDB
+#log4j.appender.APIDB.File=D:/logs/syslog.log
+#log4j.appender.APIDB=org.apache.log4j.RollingFileAppender
+#log4j.appender.APIDB.MaxFileSize=10MB
+#log4j.appender.APIDB.MaxBackupIndex=1
+#log4j.appender.APIDB.Append = true
+#log4j.appender.APIDB.layout=org.apache.log4j.PatternLayout
+#log4j.appender.APIDB.layout.ConversionPattern=%d|%t|%5p|%m%n

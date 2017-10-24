@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Properties>
+		<Property name="syslog">D://logs/syslog-apidb</Property>
+		<Property name="tdrlog">D://logs/tdr-apidb</Property>
+	</Properties>
+  	<Appenders>
+    <Console name="Console">
+      <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+    </Console>
+    <RollingFile name="SyslogFile" fileName="${syslog}.log" filePattern="${syslog}-%d{yyyy-MM-dd}-%i.log" >
+		<PatternLayout>
+			<Pattern>%d|%t|%5p|%m%n</Pattern>
+		</PatternLayout>
+		<Policies>
+			<SizeBasedTriggeringPolicy size="1 MB" />
+		</Policies>
+		<DefaultRolloverStrategy max="4"/>
+	</RollingFile>
+ 
+     <RollingFile name="TdrFile" fileName="${tdrlog}.log" filePattern="${tdrlog}-%d{yyyy-MM-dd}.log.gz" ignoreExceptions="false">
+      <PatternLayout>
+       	<pattern>%d{yyyy-MM-dd HH:mm:ss,SSS}|%m%n</pattern>
+	  </PatternLayout>
+      <TimeBasedTriggeringPolicy />
+    </RollingFile>
+     <Async name="Syslog">
+      <AppenderRef ref="SyslogFile"/>
+    </Async> 
+    <Async name="Tdr">
+      <AppenderRef ref="TdrFile"/>
+    </Async> 
+  </Appenders>
+  <Loggers>
+  	 <Root level="ALL">
+      <AppenderRef ref="Syslog"/>
+       <AppenderRef ref="Console"/>
+    </Root> 
+    <logger name="org.api.db" level="TRACE" additivity="false">
+  		<AppenderRef ref="Syslog"/>
+  	</logger>
+  	<logger name="com.mchange.v2.log" level="DEBUG" additivity="false">
+  		<AppenderRef ref="Syslog"/>
+  	</logger>
+  	
+   <logger name="org.api.db.Router" level="INFO" additivity="false">
+  		<AppenderRef ref="TdrFile"/>
+   	</logger>
+  </Loggers>
+</Configuration>
