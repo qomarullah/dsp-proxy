@@ -4,11 +4,11 @@ server.maxthread=400
 server.timeout=10000
 
 
-dsp.pool=10
-dsp.user=esb
-dsp.pwd=esbtest1
-dsp.host=10.251.38.185
-dsp.port=8001
+dsp.pool=xxx
+dsp.user=xxx
+dsp.pwd=xxxx
+dsp.host=xxxxx
+dsp.port=xxxx
 
 # keep default
 dsp.retry=5
